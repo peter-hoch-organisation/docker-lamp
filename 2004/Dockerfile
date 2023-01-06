@@ -1,5 +1,4 @@
 FROM phusion/baseimage:focal-1.1.0
-MAINTAINER Matthew Rayner <hello@rayner.io>
 ENV REFRESHED_AT 2021-09-07
 
 # based on dgraziotin/lamp
@@ -33,6 +32,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
   apt-get update && \
   apt-get -y upgrade && \
   apt-get -y install postfix python3-setuptools wget git apache2 php${PHP_VERSION}-xdebug libapache2-mod-php${PHP_VERSION} mysql-server php${PHP_VERSION}-mysql pwgen php${PHP_VERSION}-apcu php${PHP_VERSION}-gd php${PHP_VERSION}-xml php${PHP_VERSION}-mbstring zip unzip php${PHP_VERSION}-zip curl php${PHP_VERSION}-curl && \
+  apt-get -y install iproute2 net-tools iputils-ping && \
   apt-get -y autoremove && \
   apt-get -y clean && \
   echo "ServerName localhost" >> /etc/apache2/apache2.conf
