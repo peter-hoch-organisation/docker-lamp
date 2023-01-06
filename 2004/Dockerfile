@@ -74,6 +74,9 @@ ENV MYSQL_PASS:-$(pwgen -s 12 1)
 ADD supporting_files/apache_default /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 
+# config xdebug
+ADD supporting_files/xdebug.ini /etc/php/7.4/apache2/conf.d/20-xdebug.ini
+
 # Configure /app folder with sample app
 RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
 ADD app/ /app
